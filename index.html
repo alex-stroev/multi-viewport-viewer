@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Multiviewport</title>
+        <style>
+            .kernel {
+                text-align: center;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                justify-content: center;
+            }
+
+            h2 {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+                margin: 0.5em 0;
+                cursor: pointer;
+            }
+
+            iframe {
+                margin: 0 auto;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="kernel js-kernel"></div>
+    </body>
+    <script>
+        const dimensions = ["360x600", "1024x768"];
+
+        const kernel = document.querySelector(".js-kernel");
+        dimensions.map(function (dim) {
+            const width = dim.split("x")[0];
+            const height = dim.split("x")[1];
+            console.log(width + "===" + height);
+
+            const out = `
+            <div class="kernel__item">
+                <h2>${width}x${height}</h2>
+                <iframe src="http://localhost:8848/" frameborder="0" width="${width}" height="${height}"></iframe>
+            </div>
+            `;
+
+            kernel.innerHTML += out;
+        });
+
+        let h2 = document.querySelectorAll(".kernel__item h2");
+        h2.forEach((item) => {
+            item.addEventListener("click", () => changeDir(item));
+        });
+
+        function changeDir(header) {
+            const parent = header.parentNode;
+            const ifr = parent.querySelector("iframe");
+            const ifrW = ifr.width;
+            const ifrH = ifr.height;
+            ifr.width = ifrH;
+            ifr.height = ifrW;
+            header.innerHTML = ifrH + "x" + ifrW;
+        }
+    </script>
+</html>
