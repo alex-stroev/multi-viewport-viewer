@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Multiviewport</title>
-        <style>
-            .kernel {
-                text-align: center;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 12px;
-                justify-content: center;
-            }
 
-            h2 {
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 20px;
-                margin: 0.5em 0;
-                cursor: pointer;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiviewport</title>
+    <style>
+        .kernel {
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
 
-            iframe {
-                margin: 0 auto;
-                display: inline-block;
-               
-            }
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            margin: 0.5em 0;
+            cursor: pointer;
+        }
 
-            iframe.active {
-                box-shadow: 0 0 20px 0 #b00;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="kernel js-kernel"></div>
-    </body>
-    <script>
-        const dimensions = [
+        iframe {
+            margin: 0 auto;
+            display: inline-block;
+
+        }
+
+        iframe.active {
+            box-shadow: 0 0 20px 0 #b00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="kernel js-kernel"></div>
+</body>
+<script>
+    const dimensions = [
         "360x780",
         "360x800",
         "375x667",
@@ -52,11 +54,12 @@
         // "414x736",
         // "414x896",
         "600x1024",
-         "768x1024",
+        "768x1024",
         "820x1180",
         "414x699", // Аня
         "414x896",
         "922x869", // Тася
+        "402x671", // Юля iPhone
         "390x648", // Юля iPhone
         "750x276", // Юля iPhone
         "844x316", // Софа айфон
@@ -68,6 +71,7 @@
         "1280x639", // Юля
         "1280x673", // Юля 2
         "1280x800",
+        "1300x856",
         "1366x617",
         "1422x782",
         "1536x730",
@@ -75,39 +79,40 @@
         "1536x864",
         "1920x929",
         "1920x1080",
-        ];
+    ];
 
-        const kernel = document.querySelector(".js-kernel");
-        dimensions.map(function (dim) {
-            const width = dim.split("x")[0];
-            const height = dim.split("x")[1];
-            console.log(width + "===" + height);
+    const kernel = document.querySelector(".js-kernel");
+    dimensions.map(function (dim) {
+        const width = dim.split("x")[0];
+        const height = dim.split("x")[1];
+        console.log(width + "===" + height);
 
-            const out = `
+        const out = `
             <div class="kernel__item">
                 <h2>${width}x${height}</h2>
-                <iframe src="http://localhost:8848/" frameborder="0" width="${width}" height="${height}"></iframe>
+                <iframe src="http://localhost:8848/builds/savebet3000/" frameborder="0" width="${width}" height="${height}"></iframe>
             </div>
             `;
 
-            kernel.innerHTML += out;
-        });
+        kernel.innerHTML += out;
+    });
 
-        let h2 = document.querySelectorAll(".kernel__item h2");
-        h2.forEach((item) => {
-            item.addEventListener("click", () => changeDir(item));
-        });
+    let h2 = document.querySelectorAll(".kernel__item h2");
+    h2.forEach((item) => {
+        item.addEventListener("click", () => changeDir(item));
+    });
 
-        function changeDir(header) {
-            document.querySelectorAll("iframe").forEach((item)=>item.classList.remove("active"));
-            const parent = header.parentNode;
-            const ifr = parent.querySelector("iframe");
-            const ifrW = ifr.width;
-            const ifrH = ifr.height;
-            ifr.width = ifrH;
-            ifr.height = ifrW;
-            ifr.classList.add("active");
-            header.innerHTML = ifrH + "x" + ifrW;
-        }
-    </script>
+    function changeDir(header) {
+        document.querySelectorAll("iframe").forEach((item) => item.classList.remove("active"));
+        const parent = header.parentNode;
+        const ifr = parent.querySelector("iframe");
+        const ifrW = ifr.width;
+        const ifrH = ifr.height;
+        ifr.width = ifrH;
+        ifr.height = ifrW;
+        ifr.classList.add("active");
+        header.innerHTML = ifrH + "x" + ifrW;
+    }
+</script>
+
 </html>
