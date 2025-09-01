@@ -25,6 +25,10 @@
             font-size: 16px;
         }
 
+        p b {
+            font-size: 1.2em;
+        }
+
         iframe {
             margin: 0 auto;
             display: inline-block;
@@ -101,7 +105,7 @@
         const out = `
             <div class="kernel__item">
                 <h2>${width}x${height}</h2>
-                <p>100 / ${aspectRatio}</p>
+                <p>100 / <b>${aspectRatio}</b></p>
                 <iframe src="http://localhost:8848/builds/8bitdark/" frameborder="0" width="${width}" height="${height}"></iframe>
             </div>
             `;
