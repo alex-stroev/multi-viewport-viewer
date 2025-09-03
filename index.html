@@ -7,7 +7,7 @@
     <title>🛠 Multiviewport</title>
     <style>
         body {
-            background-color: #ccc;
+            background-color: #e2e2e2;
         }
 
         .kernel {
@@ -27,6 +27,7 @@
 
         p {
             font-size: 16px;
+            margin: .5em 0;
         }
 
         p b {
@@ -120,18 +121,23 @@
     // console.log(sorted);
 
     const kernel = document.querySelector(".js-kernel");
+
+    // Знаментатель определяем тут
+    const denominator = 1024;
+
+
     dimensions.map(function (dim) {
         const width = dim.split("x")[0];
         const height = dim.split("x")[1];
         console.log(width + "===" + height);
 
-        const aspectRatio = (height / width * 100).toFixed(0);
+        const aspectRatio = (width * 1024 / height).toFixed(0);
 
         const out = `
             <div class="kernel__item">
                 <h2>${width}x${height}</h2>
-                <p>100 / <b>${aspectRatio}</b></p>
-                <iframe src="http://localhost:8848/builds/freebet_per_bet__lada-avtomobilist" frameborder="0" width="${width}" height="${height}"></iframe>
+                <p> <b>${aspectRatio}</b> / ${1024} </p>
+                <iframe src="http://localhost:8848/?partner=kombo" frameborder="0" width="${width}" height="${height}"></iframe>
             </div>
             `;
 
