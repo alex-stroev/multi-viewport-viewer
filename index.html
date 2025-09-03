@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🛠 Multiviewport</title>
     <style>
+        body {
+            background-color: #ccc;
+        }
+
         .kernel {
             text-align: center;
             display: flex;
@@ -48,13 +52,19 @@
         // "400x600",
         // "400x800",
         // "400x1200",
+        "346x708", // Nikitin
         "360x780",
         "360x800",
         "375x667",
         "375x812",
         "375x833",
         "390x844",
+        "393x659", // Vlad
         "393x736",
+        "414x699", // Аня
+        "414x896",
+        "402x671", // Юля iPhone
+        "390x648", // Юля iPhone
         // "393x851",
         // "393x852",
         // "393x873",
@@ -66,11 +76,9 @@
         "600x1024",
         "768x1024",
         "820x1180",
-        "414x699", // Аня
-        "414x896",
+
         "922x869", // Тася
-        "402x671", // Юля iPhone
-        "390x648", // Юля iPhone
+
         "750x276", // Юля iPhone
         "844x316", // Софа айфон
         "1024x768",
@@ -94,6 +102,23 @@
         "2560x1440",
     ];
 
+    ///////////////////////////////////
+    // function compareNumeric(a, b) {
+    //     if (a > b) return 1;
+    //     if (a == b) return 0;
+    //     if (a < b) return -1;
+    // }
+
+    // let arr = [6, 2, 15, 3, 34, 25];
+
+    // arr.sort(compareNumeric);
+
+    // console.log(arr)
+    ///////////////////////////////////
+
+    // const sorted = dimensions.sort(compareNumeric);
+    // console.log(sorted);
+
     const kernel = document.querySelector(".js-kernel");
     dimensions.map(function (dim) {
         const width = dim.split("x")[0];
@@ -106,7 +131,7 @@
             <div class="kernel__item">
                 <h2>${width}x${height}</h2>
                 <p>100 / <b>${aspectRatio}</b></p>
-                <iframe src="http://localhost:8848/builds/8bitdark/" frameborder="0" width="${width}" height="${height}"></iframe>
+                <iframe src="http://localhost:8848/builds/freebet_per_bet__lada-avtomobilist" frameborder="0" width="${width}" height="${height}"></iframe>
             </div>
             `;
 
